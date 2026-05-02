@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="600" height="450">
+  <defs>
+    <filter id="grain5">
+      <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="3" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix type="saturate" values="0" in="noise" result="gn"/>
+      <feBlend in="SourceGraphic" in2="gn" mode="multiply"/>
+      <feComposite in2="SourceGraphic" operator="in"/>
+    </filter>
+    <filter id="cake-tex">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="4" seed="11" result="cn"/>
+      <feDisplacementMap in="SourceGraphic" in2="cn" scale="5" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="plate-blur">
+      <feGaussianBlur stdDeviation="0.8"/>
+    </filter>
+    <radialGradient id="bg5" cx="48%" cy="42%" r="68%">
+      <stop offset="0%" stop-color="#FFF8E7"/>
+      <stop offset="65%" stop-color="#FEF3C7"/>
+      <stop offset="100%" stop-color="#FDE68A" stop-opacity="0.65"/>
+    </radialGradient>
+    <radialGradient id="plate-grad" cx="45%" cy="40%" r="58%">
+      <stop offset="0%" stop-color="#FFFDF7"/>
+      <stop offset="65%" stop-color="#FEF3C7"/>
+      <stop offset="100%" stop-color="#FDE68A"/>
+    </radialGradient>
+    <radialGradient id="cake-sponge" cx="40%" cy="35%" r="55%">
+      <stop offset="0%" stop-color="#FDE68A"/>
+      <stop offset="50%" stop-color="#D97706"/>
+      <stop offset="100%" stop-color="#B45309"/>
+    </radialGradient>
+    <radialGradient id="cream-grad" cx="38%" cy="30%" r="58%">
+      <stop offset="0%" stop-color="#FFFDF7"/>
+      <stop offset="55%" stop-color="#FEF3C7"/>
+      <stop offset="100%" stop-color="#FDE68A"/>
+    </radialGradient>
+    <radialGradient id="top-frosting" cx="40%" cy="30%" r="58%">
+      <stop offset="0%" stop-color="#FFFDF7"/>
+      <stop offset="60%" stop-color="#FEF3C7"/>
+      <stop offset="100%" stop-color="#FDE68A" stop-opacity="0.8"/>
+    </radialGradient>
+    <radialGradient id="window-light5" cx="30%" cy="20%" r="70%">
+      <stop offset="0%" stop-color="#FFFDF7" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#FEF3C7" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="450" fill="url(#bg5)"/>
+  <rect width="600" height="450" fill="#FEF3C7" opacity="0.15" filter="url(#grain5)"/>
+
+  <!-- Table surface -->
+  <rect x="0" y="335" width="600" height="115" fill="#B45309" opacity="0.4"/>
+  <line x1="0" y1="340" x2="600" y2="342" stroke="#78350F" stroke-width="1.5" stroke-opacity="0.2"/>
+  <line x1="0" y1="365" x2="600" y2="368" stroke="#78350F" stroke-width="1" stroke-opacity="0.15"/>
+
+  <!-- Plate shadow -->
+  <ellipse cx="300" cy="355" rx="160" ry="20" fill="#451A03" opacity="0.18"/>
+
+  <!-- Ceramic plate -->
+  <ellipse cx="300" cy="340" rx="155" ry="28" fill="#FDE68A" opacity="0.4" filter="url(#plate-blur)"/>
+  <ellipse cx="300" cy="335" rx="150" ry="25" fill="url(#plate-grad)" filter="url(#plate-blur)"/>
+  <!-- Plate rim detail -->
+  <ellipse cx="300" cy="335" rx="150" ry="25" fill="none" stroke="#D97706" stroke-width="2" stroke-opacity="0.3"/>
+  <ellipse cx="300" cy="335" rx="135" ry="20" fill="none" stroke="#D97706" stroke-width="1" stroke-opacity="0.2"/>
+
+  <!-- === CAKE SLICE (layered construction) === -->
+
+  <!-- Cake shadow -->
+  <path d="M 218 318 Q 300 325 382 318 L 375 345 Q 300 352 225 345 Z" fill="#451A03" opacity="0.15"/>
+
+  <!-- Cake — bottom sponge layer -->
+  <rect x="222" y="278" width="156" height="40" rx="4" fill="url(#cake-sponge)" filter="url(#cake-tex)"/>
+
+  <!-- Cream filling layer 1 -->
+  <rect x="218" y="265" width="164" height="18" rx="3" fill="url(#cream-grad)"/>
+  <!-- Cream layer subtle texture -->
+  <path d="M 228 272 Q 245 268 265 272 Q 285 276 305 272 Q 325 268 345 272 Q 362 275 372 272" stroke="#FDE68A" stroke-width="1.5" fill="none" stroke-opacity="0.5"/>
+
+  <!-- Middle sponge layer -->
+  <rect x="220" y="225" width="160" height="45" rx="4" fill="url(#cake-sponge)" filter="url(#cake-tex)"/>
+  <!-- Sponge texture marks -->
+  <path d="M 230 240 Q 250 235 272 240 Q 292 245 310 240 Q 328 235 350 240 Q 365 243 372 240" stroke="#78350F" stroke-width="1.2" fill="none" stroke-opacity="0.3"/>
+  <path d="M 228 255 Q 252 250 278 255 Q 302 260 325 255 Q 348 250 372 255" stroke="#78350F" stroke-width="1" fill="none" stroke-opacity="0.25"/>
+
+  <!-- Cream filling layer 2 -->
+  <rect x="216" y="212" width="168" height="18" rx="3" fill="url(#cream-grad)"/>
+
+  <!-- Top sponge layer -->
+  <rect x="218" y="172" width="164" height="45" rx="6" fill="url(#cake-sponge)" filter="url(#cake-tex)"/>
+  <!-- Top sponge texture -->
+  <path d="M 228 188 Q 252 183 278 188 Q 302 193 325 188 Q 348 183 372 188" stroke="#78350F" stroke-width="1.2" fill="none" stroke-opacity="0.3"/>
+
+  <!-- Top frosting -->
+  <path d="M 218 172 Q 240 158 300 155 Q 358 152 382 172 Q 375 165 362 162 Q 340 155 300 152 Q 258 149 238 160 Z" fill="url(#top-frosting)" opacity="0.9"/>
+  <path d="M 218 172 L 222 278 Q 220 308 220 318 L 218 172" fill="#78350F" opacity="0.5"/>
+  <path d="M 382 172 L 378 278 Q 380 308 380 318 L 382 172" fill="#78350F" opacity="0.5"/>
+
+  <!-- Frosting drips on side -->
+  <path d="M 240 155 Q 242 165 239 175" stroke="#FFFDF7" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+  <path d="M 270 152 Q 272 163 269 174" stroke="#FFFDF7" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+  <path d="M 335 153 Q 337 164 334 174" stroke="#FFFDF7" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.6"/>
+  <path d="M 358 158 Q 360 168 357 178" stroke="#FFFDF7" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.55"/>
+
+  <!-- Berry decoration on top -->
+  <g class="breathe">
+    <circle cx="288" cy="150" r="9" fill="#B45309"/>
+    <circle cx="306" cy="147" r="8" fill="#92400E"/>
+    <circle cx="322" cy="151" r="7" fill="#D97706"/>
+    <circle cx="274" cy="153" r="6" fill="#92400E"/>
+    <!-- Berry highlights -->
+    <circle cx="285" cy="147" r="3" fill="#FDE68A" opacity="0.5"/>
+    <circle cx="303" cy="144" r="2.5" fill="#FDE68A" opacity="0.45"/>
+    <circle cx="320" cy="148" r="2" fill="#FDE68A" opacity="0.4"/>
+  </g>
+
+  <!-- Window / natural light overlay -->
+  <rect width="600" height="450" fill="url(#window-light5)"/>
+</svg>

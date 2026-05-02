@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<!-- build-provenance
+  pipeline: /animated-website
+  generated-at: 2026-05-01T10:00:00Z
+  brief-source: brief.txt
+  mcp:
+    stitch: fell-back
+    firecrawl: skipped
+    magic: skipped
+  skills:
+    brand: fired
+    ui-ux-pro-max: fired
+    design-system: fired
+    design: fell-back
+    ui-styling: fired
+    nano-banana-2: fell-back
+  images:
+    hero-bread: tier-3
+    about-hands: tier-3
+    croissants: tier-3
+    pastries: tier-3
+    cake-slice: tier-3
+    bakery-interior: tier-3
+    sourdough-crumb: tier-3
+    morning-window: tier-3
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crust &amp; Crumb — Baked Before Sunrise</title>
+  <meta name="description" content="Crust & Crumb is an artisan bakery in Old Town. Handmade sourdough, golden croissants, and Saturday bread — made with real flour, real time, and no shortcuts.">
+  <meta property="og:title" content="Crust & Crumb — Baked Before Sunrise">
+  <meta property="og:description" content="Handmade sourdough, golden croissants, and Saturday bread. Real flour, real time, no shortcuts.">
+  <meta property="og:image" content="og-image.html">
+  <meta property="og:type" content="website">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Cabin:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            cream: '#FEF3C7', surface: '#FFFDF7',
+            brown: { dark:'#78350F', amber:'#92400E', warm:'#B45309', deep:'#451A03' },
+            golden: '#FDE68A', tan: '#D97706'
+          },
+          fontFamily: { heading:['"Amatic SC"','cursive'], body:['Cabin','sans-serif'] }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* ── Design Tokens ───────────────────────────────────── */
+    :root {
+      --p-cream:#FEF3C7; --p-white:#FFFDF7; --p-brown-dark:#78350F;
+      --p-amber:#92400E; --p-orange:#B45309; --p-golden:#FDE68A;
+      --p-tan:#D97706; --p-deep:#451A03;
+      --color-bg:var(--p-cream); --color-surface:var(--p-white);
+      --color-primary:var(--p-amber); --color-primary-h:var(--p-brown-dark);
+      --color-secondary:var(--p-orange); --color-accent:var(--p-tan);
+      --color-text:var(--p-brown-dark); --color-muted:var(--p-orange);
+      --color-border:var(--p-golden);
+      --font-heading:'Amatic SC',cursive; --font-body:'Cabin',sans-serif;
+      --radius-card:16px; --radius-btn:8px; --radius-pill:999px;
+      --shadow-card:0 4px 16px rgba(120,53,15,.08);
+      --shadow-hover:0 12px 36px rgba(120,53,15,.18);
+      --dur-micro:150ms; --dur-std:300ms; --dur-page:500ms;
+      --ease:cubic-bezier(0,0,.2,1);
+    }
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:var(--font-body);color:var(--color-text);background:var(--color-bg);margin:0}
+    h1,h2,h3,h4{font-family:var(--font-heading)}
+
+    /* ── Scroll reveal ───────────────────────────────────── */
+    .reveal{opacity:0;transform:translateY(28px);transition:opacity var(--dur-page) var(--ease),transform var(--dur-page) var(--ease)}
+    .reveal.s1{transition-delay:.1s}.reveal.s2{transition-delay:.2s}.reveal.s3{transition-delay:.3s}
+    .reveal.visible{opacity:1;transform:none}
+    @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.breathe{animation:none!important}}
+
+    /* ── Animations ──────────────────────────────────────── */
+    @keyframes fadeRise{from{opacity:0;transform:translateY(32px)}to{opacity:1;transform:none}}
+    @keyframes breathe{0%,100%{transform:scale(1)}50%{transform:scale(1.018)}}
+    .fade-rise{animation:fadeRise var(--dur-page) var(--ease) both}
+    .fade-rise.d1{animation-delay:.15s}.fade-rise.d2{animation-delay:.3s}
+    .fade-rise.d3{animation-delay:.45s}.fade-rise.d4{animation-delay:.6s}
+    .breathe{animation:breathe 6s ease-in-out infinite}
+
+    /* ── Navbar ──────────────────────────────────────────── */
+    #navbar{position:fixed;top:0;left:0;right:0;z-index:50;transition:background var(--dur-std) var(--ease),box-shadow var(--dur-std) var(--ease)}
+    #navbar.scrolled{background:var(--color-surface);box-shadow:0 1px 0 var(--color-border)}
+    .nav-link{font-family:var(--font-body);font-weight:600;color:var(--color-text);text-decoration:none;font-size:.875rem;letter-spacing:.06em;padding:6px 14px;border-radius:var(--radius-btn);transition:background var(--dur-micro) var(--ease)}
+    .nav-link:hover{background:var(--color-border)}
+    .nav-cta{background:var(--color-primary);color:var(--p-white)!important;border-radius:var(--radius-pill);padding:8px 22px!important}
+    .nav-cta:hover{background:var(--color-primary-h)!important}
+    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;background:none;border:none}
+    .hamburger span{display:block;width:24px;height:2px;background:var(--color-text);border-radius:2px;transition:all var(--dur-std) var(--ease)}
+    .hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+    .hamburger.open span:nth-child(2){opacity:0}
+    .hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+    #nav-mobile{display:none;flex-direction:column;padding:16px 24px 24px;background:var(--color-surface);border-top:1px solid var(--color-border)}
+    #nav-mobile.open{display:flex}
+    #nav-mobile .nav-link{padding:12px 0;font-size:1.1rem;border-radius:0;border-bottom:1px solid var(--color-border)}
+    @media(max-width:768px){.hamburger{display:flex}#nav-desktop{display:none!important}}
+
+    /* ── Buttons ─────────────────────────────────────────── */
+    .btn-primary{display:inline-block;background:var(--color-primary);color:var(--p-white);font-family:var(--font-body);font-weight:600;font-size:1rem;padding:14px 32px;border-radius:var(--radius-pill);border:none;cursor:pointer;text-decoration:none;letter-spacing:.04em;transition:background var(--dur-micro) var(--ease),transform var(--dur-micro) var(--ease)}
+    .btn-primary:hover{background:var(--color-primary-h);transform:translateY(-1px)}
+    .btn-outline{display:inline-block;background:transparent;color:var(--color-text);font-family:var(--font-body);font-weight:600;font-size:1rem;padding:12px 30px;border-radius:var(--radius-pill);border:2px solid var(--color-border);cursor:pointer;text-decoration:none;letter-spacing:.04em;transition:background var(--dur-micro) var(--ease),transform var(--dur-micro) var(--ease)}
+    .btn-outline:hover{background:var(--color-border);transform:translateY(-1px)}
+
+    /* ── Section helpers ─────────────────────────────────── */
+    .section-label{font-family:var(--font-body);font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--color-accent);font-weight:600;margin-bottom:10px}
+    .section-title{font-family:var(--font-heading);font-weight:700;color:var(--color-text);line-height:1.1}
+    .divider{width:60px;height:3px;background:var(--color-accent);border-radius:2px;margin:18px 0}
+
+    /* ── Menu cards ──────────────────────────────────────── */
+    .menu-card{background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-card);overflow:hidden;box-shadow:var(--shadow-card);transition:transform var(--dur-std) var(--ease),box-shadow var(--dur-std) var(--ease)}
+    .menu-card:hover{transform:translateY(-6px);box-shadow:var(--shadow-hover)}
+    .menu-card img{width:100%;height:200px;object-fit:cover;display:block}
+    .card-body{padding:20px}
+    .card-name{font-family:var(--font-heading);font-size:1.9rem;font-weight:700;color:var(--color-text);margin:0 0 6px}
+    .card-desc{font-size:.9rem;color:var(--color-muted);line-height:1.6;margin:0 0 14px}
+    .card-price{font-weight:700;font-size:1.1rem;color:var(--color-primary)}
+
+    /* ── Tabs ────────────────────────────────────────────── */
+    .tab-btn{font-family:var(--font-heading);font-weight:700;font-size:1.6rem;padding:10px 28px;border:2px solid transparent;border-radius:var(--radius-pill);background:transparent;cursor:pointer;color:var(--color-muted);transition:all var(--dur-std) var(--ease)}
+    .tab-btn:hover{border-color:var(--color-border);background:var(--color-surface);color:var(--color-text)}
+    .tab-btn.active{background:var(--color-primary);color:var(--p-white);border-color:var(--color-primary)}
+    .tab-panel{display:none}.tab-panel.active{display:grid}
+
+    /* ── Feature cards ───────────────────────────────────── */
+    .feat-card{background:rgba(255,253,247,.06);border:1px solid rgba(253,230,138,.2);border-radius:var(--radius-card);padding:36px 28px;text-align:center;transition:transform var(--dur-std) var(--ease),box-shadow var(--dur-std) var(--ease)}
+    .feat-card:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.2)}
+    .feat-icon{width:64px;height:64px;border-radius:50%;background:var(--p-golden);display:flex;align-items:center;justify-content:center;margin:0 auto 20px}
+
+    /* ── Testimonials ────────────────────────────────────── */
+    .t-slide{display:none;opacity:0;flex-direction:column;align-items:center;text-align:center;transition:opacity var(--dur-std) var(--ease)}
+    .t-slide.active{display:flex}.t-slide.fade-in{opacity:1}
+    .c-btn{width:44px;height:44px;border-radius:50%;border:2px solid var(--color-border);background:var(--color-surface);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:background var(--dur-micro) var(--ease);color:var(--color-text)}
+    .c-btn:hover{background:var(--color-border)}
+    .c-dot{width:8px;height:8px;border-radius:50%;background:var(--color-border);cursor:pointer;transition:background var(--dur-micro),transform var(--dur-micro);border:none}
+    .c-dot.active{background:var(--color-primary);transform:scale(1.3)}
+
+    /* ── Form ────────────────────────────────────────────── */
+    .f-group{margin-bottom:20px}
+    .f-label{display:block;font-weight:600;font-size:.875rem;margin-bottom:6px;color:var(--color-text)}
+    .f-req{color:var(--color-accent)}
+    .f-input{width:100%;padding:12px 16px;border:1.5px solid var(--color-border);border-radius:var(--radius-btn);background:var(--color-surface);font-family:var(--font-body);font-size:1rem;color:var(--color-text);outline:none;transition:border-color var(--dur-micro) var(--ease),box-shadow var(--dur-micro) var(--ease)}
+    .f-input:focus{border-color:var(--color-secondary);box-shadow:0 0 0 3px rgba(180,83,9,.15)}
+    .f-input.err{border-color:#DC2626}
+    textarea.f-input{resize:vertical;min-height:120px}
+    .f-error{font-size:.8rem;color:#DC2626;margin-top:4px;display:none}
+    .f-error.show{display:block}
+    .f-success{display:none;text-align:center;padding:36px 24px;background:var(--color-surface);border-radius:var(--radius-card);border:1px solid var(--color-border)}
+    .f-success.show{display:block}
+
+    /* ── Footer ──────────────────────────────────────────── */
+    footer{background:var(--p-deep);color:var(--p-golden)}
+    .f-link{color:var(--p-cream);text-decoration:none;font-size:.875rem;opacity:.75;transition:opacity var(--dur-micro)}
+    .f-link:hover{opacity:1}
+    .s-btn{width:38px;height:38px;border-radius:50%;background:rgba(254,243,199,.1);display:flex;align-items:center;justify-content:center;transition:background var(--dur-micro);text-decoration:none}
+    .s-btn:hover{background:rgba(254,243,199,.25)}
+  </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════════════════════
+     NAVBAR
+════════════════════════════════════════════════ -->
+<nav id="navbar" class="w-full">
+  <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+    <a href="#hero" aria-label="Crust &amp; Crumb home" class="shrink-0">
+      <img src="logo.svg" alt="Crust &amp; Crumb" style="height:40px;width:auto">
+    </a>
+    <div id="nav-desktop" class="flex items-center gap-1">
+      <a href="#menu"        class="nav-link">Menu</a>
+      <a href="#about"       class="nav-link">About</a>
+      <a href="#features"    class="nav-link">Our Way</a>
+      <a href="#contact"     class="nav-link">Contact</a>
+      <a href="#preorder"    class="nav-link nav-cta ml-2">Pre-order</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div id="nav-mobile">
+    <a href="#menu"     class="nav-link">Menu</a>
+    <a href="#about"    class="nav-link">About</a>
+    <a href="#features" class="nav-link">Our Way</a>
+    <a href="#preorder" class="nav-link">Pre-order</a>
+    <a href="#contact"  class="nav-link">Contact</a>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════════════════════
+     HERO
+════════════════════════════════════════════════ -->
+<section id="hero" class="relative min-h-screen flex items-center overflow-hidden"
+  style="background:linear-gradient(135deg,#FFF8E7 0%,var(--color-bg) 55%,#FDE68A 100%)">
+  <div class="max-w-6xl mx-auto px-6 w-full pt-28 pb-20 flex flex-col lg:flex-row items-center gap-12">
+    <div class="flex-1 z-10">
+      <p class="section-label fade-rise d1">Artisan Bakery · Old Town</p>
+      <h1 class="fade-rise d2"
+        style="font-size:clamp(3.5rem,9vw,6.5rem);font-weight:700;color:var(--color-text);line-height:1.05;margin:0 0 20px">
+        Baked Before<br><span style="color:var(--color-accent)">Sunrise.</span>
+      </h1>
+      <p class="fade-rise d3"
+        style="font-size:1.15rem;color:var(--color-muted);line-height:1.7;max-width:400px;margin:0 0 32px">
+        Real bread. Real flour. Ready by 7.<br>
+        Come in, pour a coffee, take something warm home.
+      </p>
+      <div class="flex flex-wrap gap-4 fade-rise d4">
+        <a href="#menu"     class="btn-primary">See Our Menu</a>
+        <a href="#preorder" class="btn-outline">Pre-order Saturday Bread</a>
+      </div>
+    </div>
+    <div class="flex-1 flex justify-center lg:justify-end w-full" style="max-width:520px">
+      <div class="breathe w-full">
+        <img src="images/hero-bread.svg"
+             alt="Rustic sourdough loaf on a wooden board, dusted with flour, warm morning light"
+             class="w-full h-auto fade-rise d3"
+             style="border-radius:24px;box-shadow:var(--shadow-hover)">
+      </div>
+    </div>
+  </div>
+  <div class="absolute inset-0 pointer-events-none"
+    style="background:radial-gradient(ellipse at 80% 50%,rgba(253,230,138,.28) 0%,transparent 60%)"></div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     ABOUT
+════════════════════════════════════════════════ -->
+<section id="about" style="background:var(--color-surface);padding:96px 0">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-16">
+    <div class="flex-1 flex flex-col gap-6 reveal" style="max-width:480px">
+      <img src="images/about-hands.svg"
+           alt="Baker's hands kneading dough on a floured wooden surface"
+           class="w-full h-auto"
+           style="border-radius:20px;box-shadow:var(--shadow-hover)">
+      <img src="images/bakery-interior.svg"
+           alt="Cozy bakery interior, wooden shelves lined with fresh bread loaves"
+           class="w-full h-auto reveal s1"
+           style="border-radius:16px;box-shadow:var(--shadow-card)">
+    </div>
+    <div class="flex-1">
+      <p class="section-label reveal">Our Story</p>
+      <h2 class="section-title reveal s1"
+        style="font-size:clamp(2.5rem,5vw,4rem);margin:0 0 6px">
+        A Little Bakery<br>with a Big Oven
+      </h2>
+      <div class="divider reveal s2"></div>
+      <p class="reveal s2"
+        style="font-size:1.05rem;line-height:1.75;color:var(--color-muted);margin-bottom:18px">
+        We started Crust &amp; Crumb in a small kitchen on Maple Street.
+        Just a family, a stone-ground flour order, and way too much sourdough starter.
+      </p>
+      <p class="reveal s3"
+        style="font-size:1.05rem;line-height:1.75;color:var(--color-muted);margin-bottom:18px">
+        Now we bake every morning before the sun comes up.
+        The bread is ready when you are.
+      </p>
+      <p class="reveal s3"
+        style="font-size:1.05rem;line-height:1.75;color:var(--color-muted);margin-bottom:32px">
+        Everything here is made by hand. No machines doing the heavy lifting.
+        Just time, good flour, and a warm oven.
+      </p>
+      <a href="#menu" class="btn-primary reveal">See What We Made Today</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     MENU
+════════════════════════════════════════════════ -->
+<section id="menu" style="background:var(--color-bg);padding:96px 0">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center reveal">
+      <p class="section-label">Fresh Every Morning</p>
+      <h2 class="section-title" style="font-size:clamp(2.5rem,5vw,4rem);margin:0 0 6px">What's in the Case Today</h2>
+      <div class="divider" style="margin:18px auto"></div>
+      <p style="color:var(--color-muted);font-size:1.05rem;max-width:440px;margin:0 auto 40px">
+        Everything sells out. Come early. Come hungry.
+      </p>
+    </div>
+    <!-- Tab buttons -->
+    <div class="flex flex-wrap justify-center gap-3 mb-10 reveal">
+      <button class="tab-btn active" data-tab="bread">Bread</button>
+      <button class="tab-btn"        data-tab="pastries">Pastries</button>
+      <button class="tab-btn"        data-tab="cakes">Cakes</button>
+    </div>
+
+    <!-- BREAD -->
+    <div class="tab-panel active" id="tab-bread"
+      style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px">
+      <div class="menu-card reveal">
+        <img src="images/hero-bread.svg" alt="Classic sourdough loaf, golden crust, flour dusted">
+        <div class="card-body">
+          <h3 class="card-name">Classic Sourdough</h3>
+          <p class="card-desc">48-hour cold ferment. Crispy crust, open crumb, that tang you're already thinking about.</p>
+          <span class="card-price">$9.00</span>
+        </div>
+      </div>
+      <div class="menu-card reveal s1">
+        <img src="images/morning-window.svg" alt="Artisan bread loaves bathed in warm morning window light">
+        <div class="card-body">
+          <h3 class="card-name">Country Loaf</h3>
+          <p class="card-desc">A softer white loaf with a thin golden crust. Slices beautifully. Good for everything.</p>
+          <span class="card-price">$10.00</span>
+        </div>
+      </div>
+      <div class="menu-card reveal s2">
+        <img src="images/sourdough-crumb.svg" alt="Cross-section showing the open crumb of a dark rye loaf">
+        <div class="card-body">
+          <h3 class="card-name">Dark Rye</h3>
+          <p class="card-desc">Dense, earthy, deeply satisfying. Whole-grain rye flour and a whisper of caraway seed.</p>
+          <span class="card-price">$10.50</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- PASTRIES -->
+    <div class="tab-panel" id="tab-pastries"
+      style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px">
+      <div class="menu-card reveal">
+        <img src="images/croissants.svg" alt="Tray of fresh golden croissants with visible flaky layers">
+        <div class="card-body">
+          <h3 class="card-name">Butter Croissant</h3>
+          <p class="card-desc">Flaky, golden, and buttery all the way through. Best eaten warm, ideally within the hour.</p>
+          <span class="card-price">$4.50</span>
+        </div>
+      </div>
+      <div class="menu-card reveal s1">
+        <img src="images/pastries.svg" alt="Soft cinnamon roll with vanilla icing drizzle">
+        <div class="card-body">
+          <h3 class="card-name">Cinnamon Roll</h3>
+          <p class="card-desc">Soft dough, brown sugar, cinnamon, thick vanilla drizzle. Comfort in a roll.</p>
+          <span class="card-price">$4.00</span>
+        </div>
+      </div>
+      <div class="menu-card reveal s2">
+        <img src="images/pastries.svg" alt="Buttery danish pastry with bright apricot jam center">
+        <div class="card-body">
+          <h3 class="card-name">Jam Danish</h3>
+          <p class="card-desc">Buttery pastry, bright apricot jam center. Light, flaky, and just sweet enough.</p>
+          <span class="card-price">$4.50</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAKES -->
+    <div class="tab-panel" id="tab-cakes"
+      style="grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px">
+      <div class="menu-card reveal">
+        <img src="images/cake-slice.svg" alt="Slice of layered honey cake with cream filling">
+        <div class="card-body">
+          <h3 class="card-name">Honey Layer Cake</h3>
+          <p class="card-desc">Thin honey sponge layers with fresh cream. Delicate, not too sweet. Serves 8–10.</p>
+          <span class="card-price">$42.00</span>
+        </div>
+      </div>
+      <div class="menu-card reveal s1">
+        <img src="images/cake-slice.svg" alt="Lemon tart with brûléed top and buttery short-crust shell">
+        <div class="card-body">
+          <h3 class="card-name">Lemon Tart</h3>
+          <p class="card-desc">Sharp lemon curd in a buttery shell, finished with a thin brûlée top. Bright and clean.</p>
+          <span class="card-price">$38.00</span>
+        </div>
+      </div>
+      <div class="menu-card reveal s2">
+        <img src="images/pastries.svg" alt="Rich chocolate gâteau with espresso cream and ganache">
+        <div class="card-body">
+          <h3 class="card-name">Chocolate Gâteau</h3>
+          <p class="card-desc">Dark chocolate sponge, espresso cream, bittersweet ganache. For the serious ones.</p>
+          <span class="card-price">$48.00</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     FEATURES
+════════════════════════════════════════════════ -->
+<section id="features" style="background:var(--p-deep);padding:96px 0">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="text-center reveal">
+      <p class="section-label" style="color:var(--p-golden)">Why It Tastes Different</p>
+      <h2 class="section-title"
+        style="font-size:clamp(2.5rem,5vw,4rem);color:var(--p-cream);margin:0 0 6px">
+        The Way We Do Things
+      </h2>
+      <div class="divider" style="background:var(--p-golden);margin:18px auto"></div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+
+      <!-- Fermentation -->
+      <div class="feat-card reveal">
+        <div class="feat-icon breathe">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M14 14 Q20 8 20 14 Q20 22 12 22 Q4 22 4 12 Q4 4 14 4 Q22 4 22 14"
+                  stroke="#92400E" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+            <circle cx="10" cy="9"  r="2.5" fill="#D97706" opacity=".8"/>
+            <circle cx="16" cy="11" r="1.8" fill="#B45309" opacity=".7"/>
+            <circle cx="12" cy="7"  r="1.4" fill="#FDE68A" opacity=".9"/>
+          </svg>
+        </div>
+        <h3 style="font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--p-golden);margin:0 0 12px">
+          Natural Fermentation
+        </h3>
+        <p style="color:rgba(254,243,199,.72);line-height:1.7;font-size:.95rem">
+          We let the dough do its thing. 24 to 48 hours, slow and steady.
+          It builds flavour you can't fake.
+        </p>
+      </div>
+
+      <!-- Flour -->
+      <div class="feat-card reveal s1">
+        <div class="feat-icon breathe" style="animation-delay:1s">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <path d="M7 21 Q6 14 8 8 Q12 4 14 4 Q16 4 20 8 Q22 14 21 21 Q17 24 14 24 Q11 24 7 21Z"
+                  fill="#D97706" opacity=".85"/>
+            <circle cx="11" cy="10" r="1.5" fill="#FDE68A"/>
+            <circle cx="16" cy="9"  r="1.5" fill="#FDE68A"/>
+            <circle cx="14" cy="13" r="1.5" fill="#FDE68A"/>
+            <path d="M 9 17 L12 14 L14 16 L17 12 L19 15"
+                  stroke="#78350F" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <h3 style="font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--p-golden);margin:0 0 12px">
+          Quality Flour
+        </h3>
+        <p style="color:rgba(254,243,199,.72);line-height:1.7;font-size:.95rem">
+          Stone-ground from a local mill. You can smell the difference
+          the moment you walk through the door.
+        </p>
+      </div>
+
+      <!-- No shortcuts -->
+      <div class="feat-card reveal s2">
+        <div class="feat-icon breathe" style="animation-delay:2s">
+          <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <circle cx="14" cy="14" r="11" stroke="#92400E" stroke-width="2"/>
+            <line x1="14" y1="14" x2="14"  y2="7"  stroke="#78350F" stroke-width="2.2" stroke-linecap="round"/>
+            <line x1="14" y1="14" x2="20"  y2="17" stroke="#B45309" stroke-width="2"   stroke-linecap="round"/>
+            <line x1="14" y1="4"  x2="14"  y2="7"  stroke="#D97706" stroke-width="1.5"/>
+            <line x1="14" y1="21" x2="14"  y2="24" stroke="#D97706" stroke-width="1.5"/>
+            <line x1="4"  y1="14" x2="7"   y2="14" stroke="#D97706" stroke-width="1.5"/>
+            <line x1="21" y1="14" x2="24"  y2="14" stroke="#D97706" stroke-width="1.5"/>
+            <circle cx="14" cy="14" r="2" fill="#92400E"/>
+          </svg>
+        </div>
+        <h3 style="font-family:var(--font-heading);font-size:2rem;font-weight:700;color:var(--p-golden);margin:0 0 12px">
+          No Shortcuts
+        </h3>
+        <p style="color:rgba(254,243,199,.72);line-height:1.7;font-size:.95rem">
+          If it's not right, it stays in the kitchen. We'd rather bake again
+          than hand you something that's just okay.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     PRE-ORDER
+════════════════════════════════════════════════ -->
+<section id="preorder" style="background:var(--color-bg);padding:96px 0">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col lg:flex-row items-center gap-16">
+    <div class="flex-1 reveal" style="max-width:480px;width:100%">
+      <img src="images/sourdough-crumb.svg"
+           alt="Cross-section of Saturday sourdough showing a beautiful open crumb"
+           class="w-full h-auto"
+           style="border-radius:20px;box-shadow:var(--shadow-hover)">
+    </div>
+    <div class="flex-1">
+      <p class="section-label reveal">Limited Weekly Batch</p>
+      <h2 class="section-title reveal s1"
+        style="font-size:clamp(2.5rem,5vw,4rem);margin:0 0 6px">
+        Saturday Bread<br><span style="color:var(--color-accent)">Is Back.</span>
+      </h2>
+      <div class="divider reveal s2"></div>
+      <p class="reveal s2"
+        style="font-size:1.05rem;line-height:1.75;color:var(--color-muted);margin-bottom:18px">
+        Every Saturday we bake our small-batch sourdough.
+        It goes fast — some weeks it's gone by 8am.
+      </p>
+      <p class="reveal s3"
+        style="font-size:1.05rem;line-height:1.75;color:var(--color-muted);margin-bottom:32px">
+        Pre-order by Thursday night and it'll be here with your name on it.
+        Warm, crusty, ready for a long breakfast.
+      </p>
+      <a href="#contact" class="btn-primary reveal">Pre-Order Yours →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     TESTIMONIALS
+════════════════════════════════════════════════ -->
+<section id="testimonials" style="background:var(--color-surface);padding:96px 0">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-center reveal">
+      <p class="section-label">From the Neighborhood</p>
+      <h2 class="section-title" style="font-size:clamp(2.5rem,5vw,4rem);margin:0 0 40px">What People Say</h2>
+    </div>
+    <div class="reveal">
+      <!-- Slides -->
+      <div id="t-track">
+        <div class="t-slide active" data-i="0">
+          <div style="font-size:3.5rem;color:var(--color-accent);line-height:1;margin-bottom:10px;font-family:Georgia,serif">"</div>
+          <p style="font-size:1.2rem;line-height:1.7;font-style:italic;color:var(--color-text);max-width:540px;margin:0 auto 24px">
+            The sourdough is the best bread I've found in this city.
+            I haven't bought bread anywhere else since.
+          </p>
+          <div style="display:flex;align-items:center;justify-content:center;gap:10px">
+            <div style="width:40px;height:40px;border-radius:50%;background:var(--color-border);display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:1.4rem;font-weight:700">M</div>
+            <div>
+              <p style="font-weight:600;font-size:.95rem;margin:0">Maria K.</p>
+              <p style="font-size:.8rem;color:var(--color-muted);margin:0">Regular since 2021</p>
+            </div>
+          </div>
+        </div>
+        <div class="t-slide" data-i="1">
+          <div style="font-size:3.5rem;color:var(--color-accent);line-height:1;margin-bottom:10px;font-family:Georgia,serif">"</div>
+          <p style="font-size:1.2rem;line-height:1.7;font-style:italic;color:var(--color-text);max-width:540px;margin:0 auto 24px">
+            Pre-ordering the Saturday loaf is my weekly ritual now.
+            Nothing beats fresh bread on a Saturday morning. Nothing.
+          </p>
+          <div style="display:flex;align-items:center;justify-content:center;gap:10px">
+            <div style="width:40px;height:40px;border-radius:50%;background:var(--color-border);display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:1.4rem;font-weight:700">T</div>
+            <div>
+              <p style="font-weight:600;font-size:.95rem;margin:0">Tom B.</p>
+              <p style="font-size:.8rem;color:var(--color-muted);margin:0">Neighbor, Maple Street</p>
+            </div>
+          </div>
+        </div>
+        <div class="t-slide" data-i="2">
+          <div style="font-size:3.5rem;color:var(--color-accent);line-height:1;margin-bottom:10px;font-family:Georgia,serif">"</div>
+          <p style="font-size:1.2rem;line-height:1.7;font-style:italic;color:var(--color-text);max-width:540px;margin:0 auto 24px">
+            It smells like a real bakery the moment you open the door.
+            Like Sunday mornings when you were a kid.
+          </p>
+          <div style="display:flex;align-items:center;justify-content:center;gap:10px">
+            <div style="width:40px;height:40px;border-radius:50%;background:var(--color-border);display:flex;align-items:center;justify-content:center;font-family:var(--font-heading);font-size:1.4rem;font-weight:700">S</div>
+            <div>
+              <p style="font-weight:600;font-size:.95rem;margin:0">Sarah L.</p>
+              <p style="font-size:.8rem;color:var(--color-muted);margin:0">First-time visitor</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Controls -->
+      <div style="display:flex;align-items:center;justify-content:center;gap:16px;margin-top:36px">
+        <button class="c-btn" id="t-prev" aria-label="Previous">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <div style="display:flex;gap:8px" id="t-dots">
+          <button class="c-dot active" aria-label="Slide 1"></button>
+          <button class="c-dot"        aria-label="Slide 2"></button>
+          <button class="c-dot"        aria-label="Slide 3"></button>
+        </div>
+        <button class="c-btn" id="t-next" aria-label="Next">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path d="M6 3L11 8L6 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     CONTACT
+════════════════════════════════════════════════ -->
+<section id="contact" style="background:var(--color-bg);padding:96px 0">
+  <div class="max-w-6xl mx-auto px-6 flex flex-col lg:flex-row gap-16">
+    <!-- Info -->
+    <div class="flex-1">
+      <p class="section-label reveal">Come Find Us</p>
+      <h2 class="section-title reveal s1" style="font-size:clamp(2.5rem,5vw,4rem);margin:0 0 6px">Say Hello.</h2>
+      <div class="divider reveal s2"></div>
+      <p class="reveal s2" style="font-size:1.05rem;line-height:1.75;color:var(--color-muted);margin-bottom:36px">
+        We're at 12 Maple Street, Old Town.
+        Walk-ins always welcome. Pre-orders go through the form.
+      </p>
+      <!-- Hours card -->
+      <div class="reveal s3"
+        style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-card);padding:28px;margin-bottom:24px">
+        <h3 style="font-family:var(--font-heading);font-size:1.8rem;font-weight:700;margin:0 0 16px">Opening Hours</h3>
+        <table style="width:100%;border-collapse:collapse;font-size:.95rem">
+          <tr style="border-bottom:1px solid var(--color-border)">
+            <td style="padding:10px 0;font-weight:600">Monday – Friday</td>
+            <td style="padding:10px 0;color:var(--color-muted);text-align:right">7:00 am – 5:00 pm</td>
+          </tr>
+          <tr style="border-bottom:1px solid var(--color-border)">
+            <td style="padding:10px 0;font-weight:600">Saturday</td>
+            <td style="padding:10px 0;color:var(--color-accent);font-weight:600;text-align:right">7:00 am – 2:00 pm</td>
+          </tr>
+          <tr>
+            <td style="padding:10px 0;font-weight:600">Sunday</td>
+            <td style="padding:10px 0;color:var(--color-muted);text-align:right">Closed</td>
+          </tr>
+        </table>
+      </div>
+      <!-- Address etc. -->
+      <div class="reveal" style="display:flex;flex-direction:column;gap:12px">
+        <div style="display:flex;align-items:center;gap:12px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"
+                  stroke="#D97706" stroke-width="1.8"/><circle cx="12" cy="9" r="2.5" stroke="#D97706" stroke-width="1.8"/>
+          </svg>
+          <span style="color:var(--color-muted);font-size:.95rem">12 Maple Street, Old Town</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0">
+            <path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.95 12 19.79 19.79 0 01.88 3.4 2 2 0 012.86 1.21h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L7.09 8.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7a2 2 0 011.72 2.03z"
+                  stroke="#D97706" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span style="color:var(--color-muted);font-size:.95rem">+1 (555) 012-3456</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:12px">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" style="flex-shrink:0">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  stroke="#D97706" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            <polyline points="22,6 12,13 2,6" stroke="#D97706" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span style="color:var(--color-muted);font-size:.95rem">hello@crustandcrumb.com</span>
+        </div>
+      </div>
+    </div>
+    <!-- Form -->
+    <div class="flex-1 reveal">
+      <div style="background:var(--color-surface);border:1px solid var(--color-border);border-radius:var(--radius-card);padding:36px">
+        <h3 style="font-family:var(--font-heading);font-size:2rem;font-weight:700;margin:0 0 24px">Send us a note</h3>
+        <form id="c-form" novalidate>
+          <div class="f-group">
+            <label for="f-name" class="f-label">Name <span class="f-req">*</span></label>
+            <input type="text" id="f-name" class="f-input" placeholder="Your name" required autocomplete="name">
+            <span class="f-error" id="e-name">Please enter your name.</span>
+          </div>
+          <div class="f-group">
+            <label for="f-email" class="f-label">Email <span class="f-req">*</span></label>
+            <input type="email" id="f-email" class="f-input" placeholder="you@example.com" required autocomplete="email">
+            <span class="f-error" id="e-email">Please enter a valid email address.</span>
+          </div>
+          <div class="f-group">
+            <label for="f-msg" class="f-label">Message <span class="f-req">*</span></label>
+            <textarea id="f-msg" class="f-input" placeholder="Ask about pre-orders, catering, or just say hello…" required></textarea>
+            <span class="f-error" id="e-msg">Please write a message.</span>
+          </div>
+          <button type="submit" class="btn-primary" id="f-submit" style="width:100%">
+            <span id="f-txt">Send Message</span>
+            <span id="f-spin" style="display:none">Sending…</span>
+          </button>
+        </form>
+        <div class="f-success" id="f-ok">
+          <div style="font-size:2.5rem;margin-bottom:12px;line-height:1">🍞</div>
+          <h3 style="font-family:var(--font-heading);font-size:2rem;font-weight:700;margin:0 0 8px">Got it, thank you!</h3>
+          <p style="color:var(--color-muted);font-size:.95rem;line-height:1.6">
+            We'll get back to you within a day.
+            If it's about Saturday bread, we'll confirm your order by Friday.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════════════════════
+     FOOTER
+════════════════════════════════════════════════ -->
+<footer style="padding:64px 0 32px">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 pb-10"
+      style="border-bottom:1px solid rgba(253,230,138,.18)">
+      <div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+          <svg width="28" height="40" viewBox="0 0 28 40">
+            <line x1="14" y1="38" x2="14" y2="8" stroke="#FDE68A" stroke-width="2" stroke-linecap="round"/>
+            <ellipse cx="8"  cy="14" rx="6" ry="3.5" fill="#D97706" transform="rotate(-30 8 14)"/>
+            <ellipse cx="7"  cy="22" rx="6" ry="3.5" fill="#B45309" transform="rotate(-25 7 22)"/>
+            <ellipse cx="20" cy="16" rx="6" ry="3.5" fill="#D97706" transform="rotate(30 20 16)"/>
+            <ellipse cx="21" cy="24" rx="6" ry="3.5" fill="#B45309" transform="rotate(25 21 24)"/>
+            <ellipse cx="14" cy="8"  rx="3.5" ry="6" fill="#FDE68A"/>
+          </svg>
+          <div>
+            <p style="font-family:var(--font-heading);font-size:1.6rem;font-weight:700;color:var(--p-golden);margin:0;line-height:1">Crust &amp; Crumb</p>
+            <p style="font-size:.7rem;letter-spacing:.2em;color:var(--p-cream);opacity:.6;margin:0">BAKED BEFORE SUNRISE</p>
+          </div>
+        </div>
+        <p style="color:rgba(254,243,199,.65);font-size:.875rem;line-height:1.65;max-width:220px">
+          Baked with care. Served with warmth. Every morning, before you're awake.
+        </p>
+      </div>
+      <div>
+        <p style="font-family:var(--font-heading);font-size:1.5rem;font-weight:700;color:var(--p-golden);margin:0 0 16px">Quick Links</p>
+        <nav style="display:flex;flex-direction:column;gap:10px">
+          <a href="#menu"      class="f-link">Menu</a>
+          <a href="#about"     class="f-link">About Us</a>
+          <a href="#features"  class="f-link">Our Way</a>
+          <a href="#preorder"  class="f-link">Pre-order Saturday Bread</a>
+          <a href="#contact"   class="f-link">Contact</a>
+        </nav>
+      </div>
+      <div>
+        <p style="font-family:var(--font-heading);font-size:1.5rem;font-weight:700;color:var(--p-golden);margin:0 0 16px">Find Us</p>
+        <p style="color:rgba(254,243,199,.65);font-size:.875rem;margin:0 0 4px">12 Maple Street, Old Town</p>
+        <p style="color:rgba(254,243,199,.65);font-size:.875rem;margin:0 0 4px">Mon–Fri 7am–5pm</p>
+        <p style="color:rgba(254,243,199,.65);font-size:.875rem;margin:0 0 24px">Sat 7am–2pm · Sun Closed</p>
+        <div style="display:flex;gap:10px">
+          <a href="#" class="s-btn" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <rect x="2" y="2" width="20" height="20" rx="5" stroke="#FDE68A" stroke-width="1.8"/>
+              <circle cx="12" cy="12" r="4.5" stroke="#FDE68A" stroke-width="1.8"/>
+              <circle cx="17.5" cy="6.5" r="1" fill="#FDE68A"/>
+            </svg>
+          </a>
+          <a href="#" class="s-btn" aria-label="Facebook">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"
+                    stroke="#FDE68A" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="#" class="s-btn" aria-label="Pinterest">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="10" stroke="#FDE68A" stroke-width="1.8"/>
+              <path d="M9.5 9.5C9.5 7.57 11.07 6 13 6s3.5 1.57 3.5 3.5c0 2.5-1.5 4.5-3.5 4.5-.7 0-1.36-.28-1.85-.73L10 18"
+                    stroke="#FDE68A" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-8">
+      <p style="color:rgba(254,243,199,.4);font-size:.8rem;margin:0">© 2026 Crust &amp; Crumb. All rights reserved.</p>
+      <p style="color:rgba(254,243,199,.25);font-size:.75rem;margin:0">Made with care and too much flour.</p>
+    </div>
+  </div>
+</footer>
+
+<!-- ════════════════════════════════════════════════
+     SCRIPTS
+════════════════════════════════════════════════ -->
+<script>
+(function(){
+  /* -- Navbar scroll -- */
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 40), {passive:true});
+
+  /* -- Hamburger -- */
+  const ham = document.getElementById('hamburger');
+  const mob = document.getElementById('nav-mobile');
+  ham.addEventListener('click', () => {
+    const open = ham.classList.toggle('open');
+    mob.classList.toggle('open', open);
+    ham.setAttribute('aria-expanded', open);
+  });
+  mob.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    ham.classList.remove('open'); mob.classList.remove('open');
+    ham.setAttribute('aria-expanded','false');
+  }));
+
+  /* -- Menu tabs -- */
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const t = btn.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      const panel = document.getElementById('tab-'+t);
+      panel.classList.add('active');
+      panel.querySelectorAll('.reveal').forEach(el => {
+        el.classList.remove('visible');
+        setTimeout(() => io.observe(el), 20);
+      });
+    });
+  });
+
+  /* -- Scroll reveal (IntersectionObserver) -- */
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target); } });
+  }, {threshold:.1, rootMargin:'0px 0px -40px 0px'});
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  /* -- Testimonial carousel -- */
+  let cur = 0;
+  const slides = [...document.querySelectorAll('.t-slide')];
+  const dots   = [...document.querySelectorAll('.c-dot')];
+  let timer;
+
+  function show(n) {
+    slides[cur].classList.remove('active','fade-in');
+    dots[cur].classList.remove('active');
+    cur = ((n % slides.length) + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    dots[cur].classList.add('active');
+    requestAnimationFrame(() => requestAnimationFrame(() => slides[cur].classList.add('fade-in')));
+  }
+  function go(n){ show(n); clearInterval(timer); timer = setInterval(() => show(cur+1), 4000); }
+
+  document.getElementById('t-next').addEventListener('click', () => go(cur+1));
+  document.getElementById('t-prev').addEventListener('click', () => go(cur-1));
+  dots.forEach((d,i) => d.addEventListener('click', () => go(i)));
+  requestAnimationFrame(() => requestAnimationFrame(() => slides[0].classList.add('fade-in')));
+  timer = setInterval(() => show(cur+1), 4000);
+
+  /* -- Contact form -- */
+  const form  = document.getElementById('c-form');
+  const fOk   = document.getElementById('f-ok');
+  const fSub  = document.getElementById('f-submit');
+  const fTxt  = document.getElementById('f-txt');
+  const fSpin = document.getElementById('f-spin');
+
+  function vld(id, errId, check) {
+    const el = document.getElementById(id);
+    const er = document.getElementById(errId);
+    const ok = check(el.value.trim());
+    el.classList.toggle('err', !ok);
+    er.classList.toggle('show', !ok);
+    return ok;
+  }
+  const checks = {
+    'f-name':  ['e-name',  v => v.length > 0],
+    'f-email': ['e-email', v => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v)],
+    'f-msg':   ['e-msg',   v => v.length > 5]
+  };
+
+  form.addEventListener('submit', async e => {
+    e.preventDefault();
+    const ok = Object.entries(checks).map(([id,[eid,fn]]) => vld(id,eid,fn)).every(Boolean);
+    if(!ok){ form.querySelector('.err')?.focus(); return; }
+    fSub.disabled = true; fTxt.style.display='none'; fSpin.style.display='inline';
+    await new Promise(r => setTimeout(r, 1400));
+    form.style.display = 'none'; fOk.classList.add('show');
+  });
+  Object.entries(checks).forEach(([id,[eid,fn]]) => {
+    document.getElementById(id)?.addEventListener('blur', () => {
+      if(document.getElementById(id).classList.contains('err')) vld(id,eid,fn);
+    });
+  });
+})();
+</script>
+</body>
+</html>

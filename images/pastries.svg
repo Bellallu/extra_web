@@ -1,0 +1,126 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="600" height="450">
+  <defs>
+    <filter id="grain4">
+      <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="3" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix type="saturate" values="0" in="noise" result="gn"/>
+      <feBlend in="SourceGraphic" in2="gn" mode="multiply"/>
+      <feComposite in2="SourceGraphic" operator="in"/>
+    </filter>
+    <filter id="pastry-tex">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="4" seed="6" result="pn"/>
+      <feDisplacementMap in="SourceGraphic" in2="pn" scale="7" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="icing-blur">
+      <feGaussianBlur stdDeviation="1.5"/>
+    </filter>
+    <radialGradient id="bg4" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#FFF8E7"/>
+      <stop offset="60%" stop-color="#FEF3C7"/>
+      <stop offset="100%" stop-color="#FDE68A" stop-opacity="0.6"/>
+    </radialGradient>
+    <radialGradient id="table4" cx="50%" cy="50%" r="65%">
+      <stop offset="0%" stop-color="#B45309"/>
+      <stop offset="100%" stop-color="#78350F"/>
+    </radialGradient>
+    <radialGradient id="danish-grad" cx="40%" cy="35%" r="58%">
+      <stop offset="0%" stop-color="#FDE68A"/>
+      <stop offset="45%" stop-color="#D97706"/>
+      <stop offset="100%" stop-color="#B45309"/>
+    </radialGradient>
+    <radialGradient id="cinnamon-grad" cx="45%" cy="40%" r="55%">
+      <stop offset="0%" stop-color="#FDE68A"/>
+      <stop offset="40%" stop-color="#D97706"/>
+      <stop offset="100%" stop-color="#92400E"/>
+    </radialGradient>
+    <radialGradient id="tart-grad" cx="42%" cy="38%" r="55%">
+      <stop offset="0%" stop-color="#FDE68A"/>
+      <stop offset="50%" stop-color="#B45309"/>
+      <stop offset="100%" stop-color="#78350F"/>
+    </radialGradient>
+    <radialGradient id="overhead4" cx="50%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="#FFFDF7" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#FEF3C7" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="450" fill="url(#bg4)"/>
+
+  <!-- Wooden surface / tray -->
+  <rect x="40" y="60" width="520" height="335" rx="10" fill="url(#table4)" filter="url(#pastry-tex)"/>
+  <rect x="40" y="60" width="520" height="8" rx="5" fill="#D97706" opacity="0.3"/>
+  <!-- Wood grain -->
+  <line x1="50" y1="90" x2="555" y2="105" stroke="#451A03" stroke-width="1.2" stroke-opacity="0.15"/>
+  <line x1="50" y1="140" x2="555" y2="152" stroke="#451A03" stroke-width="1" stroke-opacity="0.12"/>
+  <line x1="50" y1="220" x2="555" y2="230" stroke="#451A03" stroke-width="1.2" stroke-opacity="0.1"/>
+  <line x1="50" y1="300" x2="555" y2="310" stroke="#451A03" stroke-width="1" stroke-opacity="0.1"/>
+
+  <!-- Cinnamon Roll (top left) -->
+  <g filter="url(#pastry-tex)">
+    <circle cx="155" cy="168" r="58" fill="url(#cinnamon-grad)"/>
+    <!-- spiral layers -->
+    <circle cx="155" cy="168" r="50" fill="none" stroke="#78350F" stroke-width="3.5" stroke-opacity="0.45"/>
+    <circle cx="155" cy="168" r="38" fill="none" stroke="#78350F" stroke-width="2.8" stroke-opacity="0.4"/>
+    <circle cx="155" cy="168" r="26" fill="none" stroke="#78350F" stroke-width="2.2" stroke-opacity="0.35"/>
+    <circle cx="155" cy="168" r="14" fill="#92400E" opacity="0.7"/>
+    <circle cx="155" cy="168" r="7" fill="#78350F" opacity="0.8"/>
+  </g>
+  <!-- Icing drizzle on cinnamon roll -->
+  <g filter="url(#icing-blur)">
+    <path d="M 125 148 Q 135 158 150 152 Q 162 146 172 155 Q 182 164 178 175" stroke="#FFFDF7" stroke-width="3.5" fill="none" stroke-linecap="round" opacity="0.85"/>
+    <path d="M 140 180 Q 148 172 158 178 Q 168 184 175 178" stroke="#FFFDF7" stroke-width="2.5" fill="none" stroke-linecap="round" opacity="0.7"/>
+  </g>
+
+  <!-- Danish Pastry (top right) -->
+  <g filter="url(#pastry-tex)">
+    <!-- Diamond-ish danish shape -->
+    <path d="M 415 115 Q 440 100 468 115 Q 488 130 490 155 Q 490 182 468 195 Q 442 208 415 195 Q 392 182 388 155 Q 386 128 415 115 Z" fill="url(#danish-grad)"/>
+    <!-- Danish filling circle -->
+    <circle cx="440" cy="155" r="22" fill="#B45309" opacity="0.7"/>
+    <circle cx="440" cy="155" r="16" fill="#D97706" opacity="0.8"/>
+    <circle cx="440" cy="155" r="9" fill="#FDE68A" opacity="0.6"/>
+    <!-- Fold lines -->
+    <path d="M 415 115 Q 440 135 468 115" stroke="#78350F" stroke-width="1.5" fill="none" stroke-opacity="0.4"/>
+    <path d="M 415 195 Q 440 175 468 195" stroke="#78350F" stroke-width="1.5" fill="none" stroke-opacity="0.4"/>
+  </g>
+
+  <!-- Fruit Tart (bottom left) -->
+  <g>
+    <!-- Tart shell -->
+    <circle cx="155" cy="320" r="58" fill="url(#tart-grad)" filter="url(#pastry-tex)"/>
+    <!-- Tart inner cream -->
+    <circle cx="155" cy="320" r="46" fill="#FEF3C7" opacity="0.8"/>
+    <!-- Berries/fruit dots -->
+    <circle cx="155" cy="300" r="10" fill="#92400E"/>
+    <circle cx="170" cy="312" r="8" fill="#B45309"/>
+    <circle cx="165" cy="328" r="9" fill="#D97706"/>
+    <circle cx="148" cy="335" r="8" fill="#92400E"/>
+    <circle cx="135" cy="322" r="9" fill="#78350F"/>
+    <circle cx="140" cy="308" r="7" fill="#B45309"/>
+    <!-- Glaze shine -->
+    <circle cx="162" cy="297" r="3.5" fill="#FFFDF7" opacity="0.55"/>
+    <circle cx="177" cy="308" r="2.5" fill="#FFFDF7" opacity="0.45"/>
+  </g>
+
+  <!-- Croissant (bottom right — small, angled) -->
+  <g filter="url(#pastry-tex)">
+    <path d="M 395 285 Q 368 292 362 322 Q 358 352 380 368 Q 400 382 428 376 Q 455 368 464 346 Q 474 322 462 300 Q 448 276 422 272 Q 408 269 395 285 Z" fill="url(#danish-grad)"/>
+    <path d="M 372 320 Q 404 300 440 308 Q 463 314 466 302" stroke="#78350F" stroke-width="1.8" fill="none" stroke-opacity="0.4"/>
+    <path d="M 365 342 Q 402 325 444 335" stroke="#78350F" stroke-width="1.5" fill="none" stroke-opacity="0.35"/>
+    <!-- Shine dot -->
+    <circle cx="412" cy="292" r="4" fill="#FFFDF7" opacity="0.5"/>
+  </g>
+
+  <!-- Overhead light -->
+  <rect width="600" height="450" fill="url(#overhead4)"/>
+
+  <!-- Powdered sugar / flour dusting -->
+  <g class="breathe">
+    <circle cx="300" cy="165" r="5" fill="#FFFDF7" opacity="0.6"/>
+    <circle cx="315" cy="155" r="3" fill="#FFFDF7" opacity="0.5"/>
+    <circle cx="290" cy="175" r="3.5" fill="#FFFDF7" opacity="0.45"/>
+    <circle cx="260" cy="250" r="4" fill="#FFFDF7" opacity="0.4"/>
+    <circle cx="340" cy="260" r="3" fill="#FFFDF7" opacity="0.38"/>
+    <circle cx="335" cy="330" r="4.5" fill="#FFFDF7" opacity="0.45"/>
+  </g>
+</svg>

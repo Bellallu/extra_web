@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <filter id="grain8">
+      <feTurbulence type="fractalNoise" baseFrequency="0.5" numOctaves="3" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix type="saturate" values="0" in="noise" result="gn"/>
+      <feBlend in="SourceGraphic" in2="gn" mode="multiply"/>
+      <feComposite in2="SourceGraphic" operator="in"/>
+    </filter>
+    <filter id="silhouette-edge">
+      <feTurbulence type="fractalNoise" baseFrequency="0.025" numOctaves="4" seed="9" result="edgeNoise"/>
+      <feDisplacementMap in="SourceGraphic" in2="edgeNoise" scale="6" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="glow-window">
+      <feGaussianBlur stdDeviation="18" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <!-- Sunrise gradient through window -->
+    <radialGradient id="sunrise" cx="50%" cy="48%" r="55%">
+      <stop offset="0%" stop-color="#FFFBEB"/>
+      <stop offset="25%" stop-color="#FEF3C7"/>
+      <stop offset="55%" stop-color="#FDE68A"/>
+      <stop offset="80%" stop-color="#D97706"/>
+      <stop offset="100%" stop-color="#92400E"/>
+    </radialGradient>
+    <!-- Background wall (dark, pre-dawn) -->
+    <linearGradient id="dark-wall" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2C1A0E"/>
+      <stop offset="60%" stop-color="#3B1F0E"/>
+      <stop offset="100%" stop-color="#451A03"/>
+    </linearGradient>
+    <!-- Window frame gradient -->
+    <linearGradient id="frame-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#92400E"/>
+      <stop offset="100%" stop-color="#451A03"/>
+    </linearGradient>
+    <!-- Silhouette fill -->
+    <linearGradient id="silhouette-fill" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#2C1A0E"/>
+      <stop offset="100%" stop-color="#1A0E05"/>
+    </linearGradient>
+    <!-- Counter surface -->
+    <linearGradient id="counter-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#78350F"/>
+      <stop offset="100%" stop-color="#451A03"/>
+    </linearGradient>
+    <!-- Warm haze overlay -->
+    <radialGradient id="haze" cx="50%" cy="45%" r="50%">
+      <stop offset="0%" stop-color="#FFFDE7" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#FDE68A" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Dark bakery interior wall -->
+  <rect width="800" height="450" fill="url(#dark-wall)"/>
+  <rect width="800" height="450" fill="#451A03" opacity="0.2" filter="url(#grain8)"/>
+
+  <!-- Window glow behind frame (atmospheric bloom) -->
+  <rect x="155" y="30" width="490" height="330" rx="8" fill="url(#sunrise)" filter="url(#glow-window)" opacity="0.8"/>
+
+  <!-- Window frame outer -->
+  <rect x="160" y="35" width="480" height="320" rx="6" fill="url(#frame-grad)" stroke="#92400E" stroke-width="3"/>
+  <!-- Window glass - sunrise sky -->
+  <rect x="172" y="47" width="456" height="296" rx="4" fill="url(#sunrise)"/>
+
+  <!-- Window cross bars (mullions) -->
+  <rect x="395" y="47" width="10" height="296" fill="url(#frame-grad)" opacity="0.9"/>
+  <rect x="172" y="188" width="456" height="10" fill="url(#frame-grad)" opacity="0.9"/>
+
+  <!-- Horizon line in window -->
+  <rect x="172" y="230" width="456" height="113" rx="0" fill="#D97706" opacity="0.35"/>
+  <line x1="172" y1="230" x2="628" y2="230" stroke="#B45309" stroke-width="1.5" stroke-opacity="0.5"/>
+
+  <!-- Counter/shelf surface in foreground -->
+  <rect x="0" y="380" width="800" height="70" fill="url(#counter-grad)"/>
+  <rect x="0" y="380" width="800" height="4" fill="#D97706" opacity="0.4"/>
+
+  <!-- Bread silhouettes on counter (dark foreground) -->
+  <g filter="url(#silhouette-edge)">
+    <!-- Tall round loaf left -->
+    <ellipse cx="240" cy="372" rx="52" ry="22" fill="url(#silhouette-fill)" opacity="0.95"/>
+    <ellipse cx="240" cy="350" rx="48" ry="28" fill="url(#silhouette-fill)"/>
+
+    <!-- Baguette center-left -->
+    <path d="M 310 380 Q 340 345 430 340 Q 460 340 465 360 Q 460 375 440 378 Q 400 382 360 383 Z" fill="url(#silhouette-fill)"/>
+
+    <!-- Round loaf center -->
+    <ellipse cx="510" cy="370" rx="48" ry="20" fill="url(#silhouette-fill)" opacity="0.9"/>
+    <ellipse cx="510" cy="350" rx="44" ry="26" fill="url(#silhouette-fill)"/>
+
+    <!-- Small rolls right -->
+    <ellipse cx="628" cy="376" rx="32" ry="14" fill="url(#silhouette-fill)" opacity="0.9"/>
+    <ellipse cx="628" cy="362" rx="30" ry="18" fill="url(#silhouette-fill)"/>
+    <ellipse cx="680" cy="378" rx="28" ry="12" fill="url(#silhouette-fill)" opacity="0.85"/>
+    <ellipse cx="680" cy="366" rx="26" ry="16" fill="url(#silhouette-fill)"/>
+  </g>
+
+  <!-- Warm haze and glow overlay -->
+  <rect width="800" height="450" fill="url(#haze)"/>
+
+  <!-- Light rays from window onto counter -->
+  <path d="M 172 343 L 0 420 L 0 380 L 172 350 Z" fill="#FDE68A" opacity="0.06"/>
+  <path d="M 628 343 L 800 415 L 800 378 L 628 350 Z" fill="#FDE68A" opacity="0.06"/>
+
+  <!-- Steam wisps from bread (breathe animation hook) -->
+  <g class="breathe" opacity="0.45">
+    <path d="M 240 342 Q 244 328 240 318 Q 236 308 240 296" stroke="#FFFDE7" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M 510 342 Q 515 326 510 316 Q 505 306 510 294" stroke="#FFFDE7" stroke-width="2" fill="none" stroke-linecap="round"/>
+    <path d="M 390 335 Q 394 322 390 312" stroke="#FFFDE7" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>

@@ -1,0 +1,51 @@
+{
+  "pipeline": "/animated-website",
+  "generatedAt": "2026-05-01T10:00:00Z",
+  "briefSource": "brief.txt",
+  "mcp": {
+    "stitch": "fell-back",
+    "firecrawl": "skipped",
+    "magic": "skipped"
+  },
+  "skills": {
+    "brand": "fired",
+    "ui-ux-pro-max": "fired",
+    "design-system": "fired",
+    "design": "fell-back",
+    "ui-styling": "fired",
+    "nano-banana-2": "fell-back"
+  },
+  "images": {
+    "hero-bread": "tier-3",
+    "about-hands": "tier-3",
+    "croissants": "tier-3",
+    "pastries": "tier-3",
+    "cake-slice": "tier-3",
+    "bakery-interior": "tier-3",
+    "sourdough-crumb": "tier-3",
+    "morning-window": "tier-3"
+  },
+  "fallbackReasons": {
+    "stitch": "mcp__stitch__ tools not present in session",
+    "firecrawl": "no reference URL in brief — step skipped by design",
+    "magic": "no 21st.dev component explicitly requested in brief",
+    "nano-banana-2": "infsh CLI not installed on machine",
+    "design": "GEMINI_API_KEY not set, google-genai package not installed"
+  },
+  "files": {
+    "html": "index.html",
+    "logo": "logo.svg",
+    "ogImage": "og-image.html",
+    "icons": "images/icons.svg",
+    "images": [
+      "images/hero-bread.svg",
+      "images/about-hands.svg",
+      "images/croissants.svg",
+      "images/pastries.svg",
+      "images/cake-slice.svg",
+      "images/bakery-interior.svg",
+      "images/sourdough-crumb.svg",
+      "images/morning-window.svg"
+    ]
+  }
+}

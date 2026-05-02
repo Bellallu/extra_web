@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="600" height="450">
+  <defs>
+    <filter id="grain2">
+      <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="4" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix type="saturate" values="0" in="noise" result="grayNoise"/>
+      <feBlend in="SourceGraphic" in2="grayNoise" mode="multiply"/>
+      <feComposite in2="SourceGraphic" operator="in"/>
+    </filter>
+    <filter id="dough-texture">
+      <feTurbulence type="fractalNoise" baseFrequency="0.03" numOctaves="6" seed="5" result="doughNoise"/>
+      <feDisplacementMap in="SourceGraphic" in2="doughNoise" scale="14" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="skin-texture">
+      <feTurbulence type="fractalNoise" baseFrequency="0.06" numOctaves="3" seed="12" result="skinNoise"/>
+      <feDisplacementMap in="SourceGraphic" in2="skinNoise" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <radialGradient id="bg2" cx="50%" cy="40%" r="65%">
+      <stop offset="0%" stop-color="#FFF8E7"/>
+      <stop offset="70%" stop-color="#FEF3C7"/>
+      <stop offset="100%" stop-color="#FDE68A" stop-opacity="0.8"/>
+    </radialGradient>
+    <radialGradient id="table-light" cx="50%" cy="0%" r="80%">
+      <stop offset="0%" stop-color="#D97706" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#78350F" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="hand-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FBBF24"/>
+      <stop offset="40%" stop-color="#D97706"/>
+      <stop offset="100%" stop-color="#92400E"/>
+    </linearGradient>
+    <radialGradient id="hand-light" cx="35%" cy="30%" r="55%">
+      <stop offset="0%" stop-color="#FDE68A" stop-opacity="0.6"/>
+      <stop offset="100%" stop-color="#B45309" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="dough-grad" cx="42%" cy="38%" r="55%">
+      <stop offset="0%" stop-color="#FFFBEB"/>
+      <stop offset="50%" stop-color="#FEF3C7"/>
+      <stop offset="100%" stop-color="#FDE68A"/>
+    </radialGradient>
+    <radialGradient id="warm-top" cx="50%" cy="0%" r="60%">
+      <stop offset="0%" stop-color="#FFFDF7" stop-opacity="0.55"/>
+      <stop offset="100%" stop-color="#FEF3C7" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="450" fill="url(#bg2)"/>
+  <rect width="600" height="450" fill="#FEF3C7" opacity="0.15" filter="url(#grain2)"/>
+
+  <!-- Wooden table surface -->
+  <rect x="0" y="260" width="600" height="190" fill="#92400E"/>
+  <rect x="0" y="260" width="600" height="190" fill="#78350F" opacity="0.5"/>
+  <rect x="0" y="260" width="600" height="190" fill="url(#table-light)"/>
+  <!-- Table wood grain lines -->
+  <line x1="0" y1="275" x2="600" y2="290" stroke="#451A03" stroke-width="1.5" stroke-opacity="0.2"/>
+  <line x1="0" y1="310" x2="600" y2="322" stroke="#451A03" stroke-width="1" stroke-opacity="0.15"/>
+  <line x1="0" y1="355" x2="600" y2="368" stroke="#451A03" stroke-width="1.2" stroke-opacity="0.12"/>
+  <line x1="0" y1="400" x2="600" y2="410" stroke="#451A03" stroke-width="1" stroke-opacity="0.1"/>
+
+  <!-- Flour on table -->
+  <ellipse cx="300" cy="310" rx="220" ry="45" fill="#FFFDF7" opacity="0.35" filter="url(#dough-texture)"/>
+
+  <!-- Dough mound — layers for painterly depth -->
+  <ellipse cx="300" cy="295" rx="165" ry="60" fill="#FDE68A" opacity="0.4"/>
+  <ellipse cx="300" cy="285" rx="155" ry="52" fill="url(#dough-grad)" filter="url(#dough-texture)"/>
+  <ellipse cx="290" cy="272" rx="120" ry="35" fill="#FFFBEB" opacity="0.55"/>
+
+  <!-- Left hand — wrist/palm base -->
+  <g filter="url(#skin-texture)">
+    <!-- Left hand palm -->
+    <path d="M 110 350 Q 90 310 115 270 Q 140 245 175 260 Q 200 272 195 305 Q 188 340 170 360 Z" fill="url(#hand-grad)"/>
+    <!-- Left hand highlight -->
+    <path d="M 120 330 Q 108 300 128 270 Q 148 252 170 264" stroke="#FDE68A" stroke-width="2" fill="none" stroke-opacity="0.45"/>
+    <!-- Fingers left -->
+    <path d="M 145 262 Q 140 238 148 218 Q 155 205 166 215 Q 172 228 168 256" fill="url(#hand-grad)"/>
+    <path d="M 165 258 Q 162 232 172 212 Q 180 198 192 208 Q 198 222 192 252" fill="#D97706"/>
+    <path d="M 185 260 Q 184 234 196 216 Q 205 202 217 214 Q 220 228 214 258" fill="#B45309"/>
+    <path d="M 112 274 Q 100 252 108 230 Q 116 216 128 226 Q 134 242 130 268" fill="#D97706"/>
+    <!-- Hand light overlay -->
+    <path d="M 110 350 Q 90 310 115 270 Q 140 245 175 260 Q 200 272 195 305 Q 188 340 170 360 Z" fill="url(#hand-light)"/>
+  </g>
+
+  <!-- Right hand -->
+  <g filter="url(#skin-texture)">
+    <!-- Right hand palm -->
+    <path d="M 490 350 Q 510 310 485 270 Q 460 245 425 260 Q 400 272 405 305 Q 412 340 430 360 Z" fill="url(#hand-grad)"/>
+    <!-- Right hand highlight -->
+    <path d="M 480 330 Q 492 300 472 270 Q 452 252 430 264" stroke="#FDE68A" stroke-width="2" fill="none" stroke-opacity="0.45"/>
+    <!-- Fingers right -->
+    <path d="M 455 262 Q 460 238 452 218 Q 445 205 434 215 Q 428 228 432 256" fill="url(#hand-grad)"/>
+    <path d="M 435 258 Q 438 232 428 212 Q 420 198 408 208 Q 402 222 408 252" fill="#D97706"/>
+    <path d="M 415 260 Q 416 234 404 216 Q 395 202 383 214 Q 380 228 386 258" fill="#B45309"/>
+    <path d="M 488 274 Q 500 252 492 230 Q 484 216 472 226 Q 466 242 470 268" fill="#D97706"/>
+    <!-- Hand light overlay -->
+    <path d="M 490 350 Q 510 310 485 270 Q 460 245 425 260 Q 400 272 405 305 Q 412 340 430 360 Z" fill="url(#hand-light)"/>
+  </g>
+
+  <!-- Warm top light -->
+  <rect width="600" height="450" fill="url(#warm-top)"/>
+
+  <!-- Flour dust on hands and dough -->
+  <g class="breathe">
+    <circle cx="160" cy="275" r="8" fill="#FFFDF7" opacity="0.55"/>
+    <circle cx="185" cy="255" r="5" fill="#FFFDF7" opacity="0.45"/>
+    <circle cx="430" cy="270" r="7" fill="#FFFDF7" opacity="0.5"/>
+    <circle cx="455" cy="250" r="4" fill="#FFFDF7" opacity="0.4"/>
+    <circle cx="300" cy="265" r="6" fill="#FFFDF7" opacity="0.6"/>
+    <circle cx="270" cy="258" r="3" fill="#FFFDF7" opacity="0.5"/>
+    <circle cx="340" cy="260" r="4" fill="#FFFDF7" opacity="0.45"/>
+  </g>
+</svg>

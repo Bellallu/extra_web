@@ -1,0 +1,108 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 450" width="600" height="450">
+  <defs>
+    <filter id="grain3">
+      <feTurbulence type="fractalNoise" baseFrequency="0.55" numOctaves="3" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix type="saturate" values="0" in="noise" result="gn"/>
+      <feBlend in="SourceGraphic" in2="gn" mode="multiply"/>
+      <feComposite in2="SourceGraphic" operator="in"/>
+    </filter>
+    <filter id="pastry-bump">
+      <feTurbulence type="fractalNoise" baseFrequency="0.035" numOctaves="5" seed="3" result="bumpNoise"/>
+      <feDisplacementMap in="SourceGraphic" in2="bumpNoise" scale="8" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <radialGradient id="bg3" cx="50%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#FFF8E7"/>
+      <stop offset="65%" stop-color="#FEF3C7"/>
+      <stop offset="100%" stop-color="#FDE68A" stop-opacity="0.7"/>
+    </radialGradient>
+    <radialGradient id="tray-grad" cx="45%" cy="35%" r="65%">
+      <stop offset="0%" stop-color="#FFFBEB"/>
+      <stop offset="55%" stop-color="#FEF3C7"/>
+      <stop offset="100%" stop-color="#FDE68A"/>
+    </radialGradient>
+    <radialGradient id="croissant-dark" cx="30%" cy="25%" r="60%">
+      <stop offset="0%" stop-color="#FDE68A"/>
+      <stop offset="35%" stop-color="#D97706"/>
+      <stop offset="70%" stop-color="#B45309"/>
+      <stop offset="100%" stop-color="#78350F"/>
+    </radialGradient>
+    <radialGradient id="croissant-light" cx="40%" cy="30%" r="55%">
+      <stop offset="0%" stop-color="#FEF3C7" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#D97706" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="overhead-light" cx="50%" cy="20%" r="60%">
+      <stop offset="0%" stop-color="#FFFDF7" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#FEF3C7" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="tray-shadow" cx="50%" cy="105%" r="55%">
+      <stop offset="0%" stop-color="#451A03" stop-opacity="0.25"/>
+      <stop offset="100%" stop-color="#451A03" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="600" height="450" fill="url(#bg3)"/>
+  <rect width="600" height="450" fill="#FEF3C7" opacity="0.18" filter="url(#grain3)"/>
+
+  <!-- Baking tray shadow -->
+  <ellipse cx="300" cy="418" rx="240" ry="18" fill="url(#tray-shadow)"/>
+
+  <!-- Baking tray -->
+  <rect x="60" y="90" width="480" height="320" rx="16" fill="#C8956C" opacity="0.3"/>
+  <rect x="65" y="95" width="470" height="310" rx="14" fill="url(#tray-grad)" filter="url(#grain3)"/>
+  <!-- Tray rim highlight -->
+  <rect x="65" y="95" width="470" height="8" rx="6" fill="#FFFDF7" opacity="0.4"/>
+
+  <!-- Croissant 1 — top left -->
+  <g filter="url(#pastry-bump)">
+    <path d="M 145 165 Q 115 175 108 210 Q 103 245 130 262 Q 155 276 180 268 Q 205 258 218 235 Q 232 210 220 185 Q 208 160 178 155 Q 162 152 145 165 Z" fill="url(#croissant-dark)"/>
+    <path d="M 145 165 Q 115 175 108 210 Q 103 245 130 262 Q 155 276 180 268 Q 205 258 218 235 Q 232 210 220 185 Q 208 160 178 155 Q 162 152 145 165 Z" fill="url(#croissant-light)"/>
+    <!-- Croissant layers/scoring -->
+    <path d="M 118 205 Q 150 185 188 192 Q 216 198 220 185" stroke="#78350F" stroke-width="1.8" fill="none" stroke-opacity="0.45"/>
+    <path d="M 110 228 Q 148 210 195 218 Q 222 224 228 215" stroke="#78350F" stroke-width="1.5" fill="none" stroke-opacity="0.35"/>
+    <path d="M 115 248 Q 155 235 198 242" stroke="#78350F" stroke-width="1.2" fill="none" stroke-opacity="0.3"/>
+  </g>
+
+  <!-- Croissant 2 — top right -->
+  <g filter="url(#pastry-bump)">
+    <path d="M 380 155 Q 350 162 342 195 Q 335 228 358 248 Q 380 265 408 260 Q 436 252 450 228 Q 465 202 454 176 Q 442 150 415 146 Q 398 143 380 155 Z" fill="url(#croissant-dark)"/>
+    <path d="M 380 155 Q 350 162 342 195 Q 335 228 358 248 Q 380 265 408 260 Q 436 252 450 228 Q 465 202 454 176 Q 442 150 415 146 Q 398 143 380 155 Z" fill="url(#croissant-light)"/>
+    <path d="M 352 193 Q 385 172 422 180 Q 450 186 453 175" stroke="#78350F" stroke-width="1.8" fill="none" stroke-opacity="0.45"/>
+    <path d="M 345 216 Q 383 198 428 208 Q 455 214 458 205" stroke="#78350F" stroke-width="1.5" fill="none" stroke-opacity="0.35"/>
+    <path d="M 350 236 Q 390 222 432 230" stroke="#78350F" stroke-width="1.2" fill="none" stroke-opacity="0.3"/>
+  </g>
+
+  <!-- Croissant 3 — bottom left (slightly rotated feel) -->
+  <g filter="url(#pastry-bump)">
+    <path d="M 130 300 Q 98 308 90 345 Q 85 380 115 398 Q 142 414 172 406 Q 200 396 214 370 Q 228 342 215 315 Q 200 288 168 282 Q 150 278 130 300 Z" fill="url(#croissant-dark)"/>
+    <path d="M 130 300 Q 98 308 90 345 Q 85 380 115 398 Q 142 414 172 406 Q 200 396 214 370 Q 228 342 215 315 Q 200 288 168 282 Q 150 278 130 300 Z" fill="url(#croissant-light)"/>
+    <path d="M 100 342 Q 136 320 175 328 Q 204 334 208 320" stroke="#78350F" stroke-width="1.8" fill="none" stroke-opacity="0.45"/>
+    <path d="M 94 365 Q 134 348 180 358 Q 210 365 215 355" stroke="#78350F" stroke-width="1.5" fill="none" stroke-opacity="0.35"/>
+    <path d="M 100 388 Q 142 375 185 382" stroke="#78350F" stroke-width="1.2" fill="none" stroke-opacity="0.3"/>
+  </g>
+
+  <!-- Croissant 4 — bottom right -->
+  <g filter="url(#pastry-bump)">
+    <path d="M 375 288 Q 345 298 338 332 Q 332 366 358 382 Q 382 396 410 390 Q 440 382 454 358 Q 468 332 456 306 Q 444 278 416 272 Q 396 268 375 288 Z" fill="url(#croissant-dark)"/>
+    <path d="M 375 288 Q 345 298 338 332 Q 332 366 358 382 Q 382 396 410 390 Q 440 382 454 358 Q 468 332 456 306 Q 444 278 416 272 Q 396 268 375 288 Z" fill="url(#croissant-light)"/>
+    <path d="M 348 328 Q 382 308 420 316 Q 448 322 452 310" stroke="#78350F" stroke-width="1.8" fill="none" stroke-opacity="0.45"/>
+    <path d="M 342 352 Q 380 335 424 344 Q 452 350 456 342" stroke="#78350F" stroke-width="1.5" fill="none" stroke-opacity="0.35"/>
+    <path d="M 348 372 Q 388 360 428 368" stroke="#78350F" stroke-width="1.2" fill="none" stroke-opacity="0.3"/>
+  </g>
+
+  <!-- Overhead warm light -->
+  <rect width="600" height="450" fill="url(#overhead-light)"/>
+
+  <!-- Sesame/flour specks on croissants -->
+  <g class="breathe">
+    <circle cx="162" cy="185" r="2.5" fill="#FFFDF7" opacity="0.7"/>
+    <circle cx="175" cy="192" r="2" fill="#FFFDF7" opacity="0.6"/>
+    <circle cx="155" cy="200" r="1.8" fill="#FFFDF7" opacity="0.55"/>
+    <circle cx="395" cy="172" r="2.5" fill="#FFFDF7" opacity="0.7"/>
+    <circle cx="410" cy="180" r="2" fill="#FFFDF7" opacity="0.6"/>
+    <circle cx="152" cy="345" r="2.5" fill="#FFFDF7" opacity="0.65"/>
+    <circle cx="165" cy="358" r="2" fill="#FFFDF7" opacity="0.55"/>
+    <circle cx="395" cy="330" r="2.5" fill="#FFFDF7" opacity="0.65"/>
+    <circle cx="412" cy="342" r="2" fill="#FFFDF7" opacity="0.55"/>
+  </g>
+</svg>

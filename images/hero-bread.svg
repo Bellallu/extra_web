@@ -1,0 +1,121 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <!-- Organic texture filter -->
+    <filter id="grain" x="0%" y="0%" width="100%" height="100%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.65" numOctaves="3" stitchTiles="stitch" result="noise"/>
+      <feColorMatrix type="saturate" values="0" in="noise" result="grayNoise"/>
+      <feBlend in="SourceGraphic" in2="grayNoise" mode="multiply" result="blend"/>
+      <feComposite in="blend" in2="SourceGraphic" operator="in"/>
+    </filter>
+    <filter id="wood-texture">
+      <feTurbulence type="turbulence" baseFrequency="0.015 0.8" numOctaves="4" seed="2" result="woodNoise"/>
+      <feDisplacementMap in="SourceGraphic" in2="woodNoise" scale="6" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="bread-texture">
+      <feTurbulence type="fractalNoise" baseFrequency="0.04" numOctaves="5" seed="8" result="breadNoise"/>
+      <feDisplacementMap in="SourceGraphic" in2="breadNoise" scale="10" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+    <filter id="soft-glow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feComposite in="SourceGraphic" in2="blur" operator="over"/>
+    </filter>
+    <!-- Warm background gradient -->
+    <radialGradient id="bg-light" cx="20%" cy="35%" r="70%">
+      <stop offset="0%" stop-color="#FFF8E7"/>
+      <stop offset="60%" stop-color="#FEF3C7"/>
+      <stop offset="100%" stop-color="#FDE68A"/>
+    </radialGradient>
+    <!-- Wood board gradient -->
+    <linearGradient id="wood-grad" x1="0%" y1="0%" x2="100%" y2="15%">
+      <stop offset="0%" stop-color="#92400E"/>
+      <stop offset="30%" stop-color="#B45309"/>
+      <stop offset="60%" stop-color="#78350F"/>
+      <stop offset="100%" stop-color="#451A03"/>
+    </linearGradient>
+    <!-- Bread crust gradient -->
+    <radialGradient id="crust-grad" cx="42%" cy="38%" r="55%">
+      <stop offset="0%" stop-color="#D97706"/>
+      <stop offset="40%" stop-color="#B45309"/>
+      <stop offset="75%" stop-color="#92400E"/>
+      <stop offset="100%" stop-color="#78350F"/>
+    </radialGradient>
+    <!-- Morning light overlay -->
+    <radialGradient id="morning-light" cx="15%" cy="45%" r="60%">
+      <stop offset="0%" stop-color="#FFFBEB" stop-opacity="0.7"/>
+      <stop offset="100%" stop-color="#FEF3C7" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Flour dust gradient -->
+    <radialGradient id="flour" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFFDF7" stop-opacity="0.9"/>
+      <stop offset="100%" stop-color="#FEF3C7" stop-opacity="0"/>
+    </radialGradient>
+    <!-- Shadow gradient -->
+    <radialGradient id="shadow" cx="50%" cy="100%" r="55%">
+      <stop offset="0%" stop-color="#451A03" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#451A03" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" fill="url(#bg-light)"/>
+
+  <!-- Atmospheric depth — background fog layer -->
+  <rect width="800" height="450" fill="#FEF3C7" opacity="0.2" filter="url(#grain)"/>
+
+  <!-- Wooden board — base layer -->
+  <rect x="80" y="220" width="640" height="180" rx="12" fill="url(#wood-grad)" filter="url(#wood-texture)"/>
+  <!-- Board highlight edge -->
+  <rect x="80" y="220" width="640" height="8" rx="4" fill="#D97706" opacity="0.4"/>
+  <!-- Board shadow -->
+  <ellipse cx="400" cy="410" rx="310" ry="22" fill="url(#shadow)"/>
+
+  <!-- Board grain lines (atmospheric depth technique) -->
+  <line x1="120" y1="230" x2="140" y2="395" stroke="#451A03" stroke-width="1.5" stroke-opacity="0.15"/>
+  <line x1="220" y1="228" x2="238" y2="395" stroke="#451A03" stroke-width="1" stroke-opacity="0.1"/>
+  <line x1="350" y1="225" x2="365" y2="395" stroke="#451A03" stroke-width="1.2" stroke-opacity="0.12"/>
+  <line x1="490" y1="224" x2="502" y2="395" stroke="#451A03" stroke-width="1" stroke-opacity="0.09"/>
+  <line x1="620" y1="228" x2="630" y2="395" stroke="#451A03" stroke-width="1.5" stroke-opacity="0.13"/>
+
+  <!-- Bread loaf — shadow layer (painterly depth) -->
+  <ellipse cx="403" cy="282" rx="178" ry="88" fill="#451A03" opacity="0.18" filter="url(#soft-glow)"/>
+
+  <!-- Bread loaf — base dark layer -->
+  <ellipse cx="400" cy="268" rx="175" ry="82" fill="#78350F"/>
+
+  <!-- Bread loaf — mid layer (layered paths for depth) -->
+  <ellipse cx="400" cy="262" rx="168" ry="76" fill="#92400E"/>
+
+  <!-- Bread loaf — crust layer -->
+  <ellipse cx="400" cy="256" rx="162" ry="70" fill="url(#crust-grad)" filter="url(#bread-texture)"/>
+
+  <!-- Bread top dome highlight -->
+  <ellipse cx="370" cy="226" rx="90" ry="38" fill="#FDE68A" opacity="0.28"/>
+
+  <!-- Score lines on bread -->
+  <path d="M 310 240 Q 400 210 490 240" stroke="#78350F" stroke-width="3" fill="none" stroke-opacity="0.7"/>
+  <path d="M 320 258 Q 400 228 480 258" stroke="#78350F" stroke-width="2.5" fill="none" stroke-opacity="0.5"/>
+  <path d="M 350 200 Q 360 250 370 290" stroke="#78350F" stroke-width="2.5" fill="none" stroke-opacity="0.5"/>
+  <path d="M 430 195 Q 440 248 448 292" stroke="#78350F" stroke-width="2" fill="none" stroke-opacity="0.4"/>
+
+  <!-- Flour dust spots on board -->
+  <g class="breathe">
+    <ellipse cx="180" cy="330" rx="35" ry="14" fill="url(#flour)"/>
+    <ellipse cx="580" cy="360" rx="28" ry="10" fill="url(#flour)"/>
+    <ellipse cx="320" cy="380" rx="22" ry="8" fill="url(#flour)"/>
+    <ellipse cx="510" cy="310" rx="18" ry="7" fill="url(#flour)"/>
+    <circle cx="250" cy="350" r="6" fill="#FFFDF7" opacity="0.5"/>
+    <circle cx="470" cy="370" r="4" fill="#FFFDF7" opacity="0.4"/>
+    <circle cx="600" cy="340" r="5" fill="#FFFDF7" opacity="0.45"/>
+    <!-- flour scatter tiny dots -->
+    <circle cx="160" cy="295" r="3" fill="#FFFDF7" opacity="0.6"/>
+    <circle cx="195" cy="305" r="2" fill="#FFFDF7" opacity="0.5"/>
+    <circle cx="620" cy="290" r="3" fill="#FFFDF7" opacity="0.55"/>
+    <circle cx="555" cy="380" r="2.5" fill="#FFFDF7" opacity="0.5"/>
+  </g>
+
+  <!-- Morning light ray overlay -->
+  <rect width="800" height="450" fill="url(#morning-light)"/>
+
+  <!-- Warm ambient glow from left -->
+  <rect width="200" height="450" fill="#FFF8E7" opacity="0.15"/>
+</svg>
