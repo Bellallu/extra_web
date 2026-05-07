@@ -1,0 +1,8 @@
+ Create a website for a modern artisan bakery called “Crust & Crumb”. The goal is to showcase handmade baked goods, tell a short story about the bakery, and encourage visitors to come in or place pre-orders.
+The style should feel warm, cozy, and inviting, like a bakery early in the morning. Use soft cream, white, dark brown, and golden colors. The atmosphere should focus on bread, wood textures, and natural light.
+The writing tone should be simple and natural. Use short sentences and sensory words (like warm, soft, crispy). Speak to the visitor like a neighbor, not a customer.
+The website should include these sections: a hero section with the headline “Baked Before Sunrise” and buttons for Menu and Order; an about section with a short story of the bakery; a menu section with categories (Bread, Pastries, Cakes) and cards that show image, name, short description, and price; a features section highlighting natural fermentation, quality flour, and no shortcuts; a pre-order section promoting Saturday bread with a call-to-action; a testimonials section with a few short quotes; a contact section with address, opening hours, and a simple form; and a footer with logo, links, and social media.
+Include 5–10 images such as bread, croissants, pastries, baker hands, and bakery interior. The images should have warm lighting and focus on texture.
+Use simple UI components like cards, tabs for the menu, a carousel for testimonials, and a basic form. Add light hover animations on cards.
+Make the design responsive so it works well on mobile, with layouts adjusting from 4 columns to 2 to 1.
+The final result should be a clean, warm, and visually appealing website that feels like a real bakery.
